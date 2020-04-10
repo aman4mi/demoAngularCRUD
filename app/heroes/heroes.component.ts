@@ -10,8 +10,7 @@ import { HeroService } from '../hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
-  // heroes: String;
-data=String;
+  // data=String;
 
   constructor(private heroService: HeroService) { }
 
@@ -22,9 +21,9 @@ data=String;
   }
 
   getHeroesDemo(): void {
-    this.heroService.getStudentList().subscribe(data =>{  
+    this.heroService.getPeopleList().subscribe(heroes =>{  
       debugger
-      this.data =data;    
+      this.heroes =heroes;    
       }) 
   }
 
@@ -33,18 +32,18 @@ data=String;
     .subscribe(heroes => this.heroes = heroes);
   }
 
-  // add(name: string): void {
-  //   name = name.trim();
-  //   if (!name) { return; }
-  //   this.heroService.addHero({ name } as Hero)
-  //     .subscribe(hero => {
-  //       this.heroes.push(hero);
-  //     });
-  // }
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.heroService.addHero({ name } as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });
+  }
 
-  // delete(hero: Hero): void {
-  //   this.heroes = this.heroes.filter(h => h !== hero);
-  //   this.heroService.deleteHero(hero).subscribe();
-  // }
+  delete(hero: Hero): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero).subscribe();
+  }
 
 }

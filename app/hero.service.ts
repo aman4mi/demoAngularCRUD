@@ -14,8 +14,8 @@ export class HeroService {
   private heroesUrl = 'api/heroes';  // URL to web api
 
    private heroesUrlRem = 'http://192.168.43.239:8000/hello';
-   private heroesUrlRemOffline = 'http://localhost:8000/hello';
-
+   private heroesUrlRemOffline = 'http://localhost:8000/heroes2';
+// , {responseType: 'text'}
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -26,11 +26,11 @@ export class HeroService {
     private messageService: MessageService) { }
 
   /** GET heroes from the server */
-  getStudentList(): Observable<any> {  
-    return this.http.get(this.heroesUrlRemOffline, {responseType: 'text'})
+  getPeopleList(): Observable<any> {  
+    return this.http.get(this.heroesUrlRemOffline)
     .pipe(
       tap(_ => this.log('fetched heroes')),
-      catchError(this.handleError<any>('getStudentList', ''))
+      catchError(this.handleError<any>('getPeopleList', ''))
     );  
   }  
 
