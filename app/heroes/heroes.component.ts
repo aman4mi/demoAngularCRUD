@@ -8,6 +8,7 @@ import { HeroService } from '../hero.service';
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
+
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
   // data=String;
@@ -34,7 +35,7 @@ export class HeroesComponent implements OnInit {
       this.heroes = heroes});
   }
 
-  add(name: string): void {
+  add(name: string): Hero {
     name = name.trim();
     if (!name) { return; }
     this.heroService.addHero({ name } as Hero)
