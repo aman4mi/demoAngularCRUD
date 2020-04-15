@@ -16,8 +16,8 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit() {
     console.log("from heroes.component onInit...");
-    // this.getHeroes();
-    this.getHeroesDemo();
+    this.getHeroes();
+    // this.getHeroesDemo();
   }
 
   getHeroesDemo(): void {
@@ -29,16 +29,23 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-    .subscribe(heroes => this.heroes = heroes);
+    .subscribe(heroes => {
+      // debugger
+      this.heroes = heroes});
   }
 
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
     this.heroService.addHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero);
-      });
+      .subscribe((hero:Hero) => {
+        this.heroes.push(hero),
+          console.log("POST call in data", hero);
+      },
+      
+      (error:any)=>console.log("POST call in error", error)
+      
+      );
   }
 
   delete(hero: Hero): void {
