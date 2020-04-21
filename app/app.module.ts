@@ -1,6 +1,6 @@
 import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -14,11 +14,21 @@ import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
 import { HeroesComponent }      from './heroes/heroes.component';
 import { HeroSearchComponent }  from './hero-search/hero-search.component';
 import { MessagesComponent }    from './messages/messages.component';
+// import { SignUpComponent } from './user1/sign-up/sign-up.component';
+// import { SignInComponent } from './user1/sign-in/sign-in.component';
+// import { ProfileComponent } from './user1/profile/profile.component';
+// import { AuthGuard }  from './user1/auth.guard';
+
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { AuthGuard }  from './user/auth.guard';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
 
@@ -35,9 +45,13 @@ import { MessagesComponent }    from './messages/messages.component';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    SignUpComponent,
+    SignInComponent,
+    ProfileComponent
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  providers: [ AuthGuard ]
 })
 
 export class AppModule { }
