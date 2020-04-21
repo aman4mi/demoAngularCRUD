@@ -11,14 +11,12 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    debugger
     return this.authService.authenticate().pipe(
       map(
         active => {
           debugger
           // return active['status'] == 'success';
           return active['status'] == 'failed to complete';
-
         }
       )
     );

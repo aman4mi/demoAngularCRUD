@@ -21,6 +21,7 @@ const routes: Routes = [
   // { path: 'detail/:id', component: HeroDetailComponent },
   { path: '', redirectTo: '/sign-in', pathMatch: 'full'},
   { path: 'sign-in', component: SignInComponent},
+  { path: 'sign-out', component: SignInComponent},
   { path: 'sign-up', component: SignUpComponent},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}
 ];

@@ -31,18 +31,23 @@ export class AuthenticationService {
 
   // sign in
   signIn(username:string, password:string){
+    var data = "username=" + username + "&password=" + password + "&grant_type=" + password;
+
     return this.http.post(
       this.workspace + '/sample-sign-in',
+
       // body args
       {
         'username': username,
         'password': password
       },
       this.jsonHeader
+      // {headers: new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True'})}
+
     ).subscribe(
       (result:any) => {
         // save the access token in local storage
-        localStorage.setItem('user_access_token', result['data']['access_token']);
+        localStorage.setItem('user_access_token', 'jj');
         // change route to the profile component
         this.router.navigate(['profile']);
       }
@@ -64,11 +69,12 @@ signOut(){
 
   // authenticate - checks if the users token is valid
 authenticate(){
-          debugger
-
+  var tok=this.getAccessToken();
   return this.http.post(
     this.workspace + '/sample-authenticate',
-    {},
+    {'token':tok},
+    // {},
+
     this.jsonHeader
   );
 }

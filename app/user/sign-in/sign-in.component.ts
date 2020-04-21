@@ -21,7 +21,6 @@ export class SignInComponent implements OnInit {
   }
 
    signInUser(){
-     debugger
      console.log("gg "+this.form.get('username').value)
     this.authService.signIn(
       this.form.get('username').value,

@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 export class AuthenticationService {
   workspace = 'https://amazing-sinoussi-00315a.busywork.ai';
   jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
+  reqHeader = {headers: new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' })};
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -38,10 +39,12 @@ export class AuthenticationService {
         'username': username,
         'password': password
       },
+
       this.jsonHeader
     ).subscribe(
       (result:any) => {
         // save the access token in local storage
+        debugger
         localStorage.setItem('user_access_token', result['data']['access_token']);
         // change route to the profile component
         this.router.navigate(['profile']);
@@ -64,8 +67,6 @@ signOut(){
 
   // authenticate - checks if the users token is valid
 authenticate(){
-          debugger
-
   return this.http.post(
     this.workspace + '/sample-authenticate',
     {},
