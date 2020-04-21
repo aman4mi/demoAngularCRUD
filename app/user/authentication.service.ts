@@ -46,8 +46,9 @@ export class AuthenticationService {
 
     ).subscribe(
       (result:any) => {
+        debugger
         // save the access token in local storage
-        localStorage.setItem('user_access_token', 'jj');
+        localStorage.setItem('user_access_token', result['data']['access_token']);
         // change route to the profile component
         this.router.navigate(['profile']);
       }
@@ -69,12 +70,10 @@ signOut(){
 
   // authenticate - checks if the users token is valid
 authenticate(){
-  var tok=this.getAccessToken();
+  var aToken = this.getAccessToken();
   return this.http.post(
     this.workspace + '/sample-authenticate',
-    {'token':tok},
-    // {},
-
+    {'aToken': aToken},
     this.jsonHeader
   );
 }
